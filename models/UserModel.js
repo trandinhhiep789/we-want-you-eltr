@@ -40,6 +40,10 @@ var UserSchema = new Schema({
     soNamKinhNghiem:{
         Number
     },
+    hoVaTen:{
+        type: String,
+        default: ""
+    },
     kinhNghiemLamViec:[],
     cacKiNang:[],
     soThich:[],

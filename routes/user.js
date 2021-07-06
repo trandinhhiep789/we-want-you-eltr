@@ -13,6 +13,7 @@ router.get("/tuyendung/getall_user", function (req, res, next) {
     .sort({ tenUser: 1 })
     .select({
       tenUser: 1,
+      hoVaTen: 1,
       moTa: 1,
       loaiUser: 1,
       email: 1,
@@ -87,6 +88,7 @@ router.get("/tuyendung/get_user_with_tenUser", function (req, res, next) {
     .sort({ tenUser: 1 })
     .select({
       tenUser: 1,
+      hoVaTen: 1,
       moTa: 1,
       loaiUser: 1,
       email: 1,
@@ -293,6 +295,10 @@ router.put("/tuyendung/update_user", function (req, res, next) {
 
   if (req.body.soThich && req.body.soThich.length > 2) {
     newValues.soThich = req.body.soThich;
+  }
+
+  if (req.body.hoVaTen && req.body.hoVaTen.length > 2) {
+    newValues.hoVaTen = req.body.hoVaTen;
   }
 
   if (req.body.hoatDong && req.body.hoatDong.length > 2) {
