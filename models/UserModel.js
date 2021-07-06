@@ -14,6 +14,10 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
+    soDienThoai:{
+        type: String,
+        default: "" 
+    },
     passWord:{
         type: String,
         required: true
@@ -37,6 +41,10 @@ var UserSchema = new Schema({
         Number
     },
     kinhNghiemLamViec:[],
+    cacKiNang:[],
+    soThich:[],
+    hoatDong:[],
+    nguoiThamChieu:[],
     tenTruong:{
         type: String,
         default: ""
