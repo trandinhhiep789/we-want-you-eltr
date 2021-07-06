@@ -309,7 +309,7 @@ router.put("/tuyendung/update_user", function (req, res, next) {
 
   // Update Images
   if (req.body.imageName && req.body.imageName.length > 0) {
-    newValues.imageUrl = req.body.imaimageNamegeUrl;
+    newValues.imageUrl = req.body.imageName;
   }
 
   // Update Images Cover
