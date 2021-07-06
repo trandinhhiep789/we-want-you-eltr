@@ -65,7 +65,8 @@ var UserSchema = new Schema({
         default: Date.now
     },
     imageUrl: {
-        type: String
+        type: String,
+        default: ""
     },
     imageUrlCover:[],
     categoryId: Schema.ObjectId,
