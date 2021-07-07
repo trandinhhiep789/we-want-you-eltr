@@ -242,7 +242,7 @@ router.put("/tuyendung/update_post", (req, res, next) => {
     newValues.noiDung = req.body.noiDung;
   }
 
-  if (req.body.luong && req.body.noiDung.luong > 2) {
+  if (req.body.luong && req.body.luong.length > 2) {
     newValues.luong = req.body.luong;
   }
 
