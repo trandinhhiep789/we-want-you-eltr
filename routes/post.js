@@ -18,6 +18,8 @@ router.get("/tuyendung/getall_post", (req, res, next) => {
       noiDung: 1,
       create_date: 1,
       danhSachUngCuVien: 1,
+      diaChi: 1,
+      luong: 1,
       userId: 1,
       categoryId: 1,
     })
@@ -76,6 +78,8 @@ router.get("/tuyendung/get_post_with_tieuDe", (req, res, next) => {
       noiDung: 1,
       create_date: 1,
       danhSachUngCuVien: 1,
+      luong: 1,
+      diaChi: 1,
       userId: 1,
       categoryId: 1,
     })
@@ -115,6 +119,8 @@ router.get("/tuyendung/get_post_with_category_id", (req, res, next) => {
       noiDung: 1,
       create_date: 1,
       danhSachUngCuVien: 1,
+      luong: 1,
+      diaChi: 1,
       userId: 1,
       categoryId: 1,
     })
@@ -153,6 +159,8 @@ router.get("/tuyendung/get_post_with_user_id", (req, res, next) => {
       tieuDe: 1,
       noiDung: 1,
       create_date: 1,
+      luong: 1,
+      diaChi: 1,
       danhSachUngCuVien: 1,
       userId: 1,
       categoryId: 1,
@@ -180,6 +188,8 @@ router.post("/tuyendung/insert_new_post", (req, res, next) => {
   const newPost = new Post({
     tieuDe: req.body.tieuDe,
     noiDung: req.body.noiDung,
+    luong: req.body.luong,
+    diaChi: req.body.diaChi,
     userId: mongoose.Types.ObjectId(req.body.userId),
     categoryId: mongoose.Types.ObjectId(req.body.categoryId),
   });
@@ -232,6 +242,14 @@ router.put("/tuyendung/update_post", (req, res, next) => {
     newValues.noiDung = req.body.noiDung;
   }
 
+  if (req.body.luong && req.body.noiDung.luong > 2) {
+    newValues.luong = req.body.luong;
+  }
+
+  if (req.body.diaChi && req.body.diaChi.length > 2) {
+    newValues.diaChi = req.body.diaChi;
+  }
+
   // userId không có chức năng sửa
 
   if (mongoose.Types.ObjectId.isValid(req.body.post_id) == true) {
@@ -243,14 +261,14 @@ router.put("/tuyendung/update_post", (req, res, next) => {
     multi: true,
   };
 
-  User.findOneAndUpdate(
+  Post.findOneAndUpdate(
     condition,
     {
       $set: newValues,
       $addToSet: { kinhNghiemLamViec: req.body.kinhNghiemLamViec },
     },
     options,
-    (err, updateUser) => {
+    (err, updatePost) => {
       if (err) {
         res.json({
           result: "failed",
@@ -260,22 +278,22 @@ router.put("/tuyendung/update_post", (req, res, next) => {
       } else {
         res.json({
           result: "ok",
-          data: updateUser,
-          message: `update user Successfully`,
+          data: updatePost,
+          message: `update post Successfully`,
         });
       }
     }
   );
 });
 
-// xoa user
-router.delete("/tuyendung/delete_user/:id", async (req, res, next) => {
+// xoa post
+router.delete("/tuyendung/delete_post/:id", async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    await user.remove();
+    const post = await Post.findById(req.params.id);
+    await post.remove();
     res.send({ data: "Xóa thành công" });
   } catch {
-    res.status(404).send({ error: "User not found!" });
+    res.status(404).send({ error: "Post not found!" });
   }
 });
 

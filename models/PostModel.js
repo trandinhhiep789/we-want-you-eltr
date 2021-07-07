@@ -10,6 +10,14 @@ var PostSchema = new Schema({
         type: String,
         required: true
     },
+    diaChi: {
+        type: String,
+        default: "" 
+    },
+    luong: {
+        type: String,
+        default: "" 
+    },
     create_date: {
         type: Date,
         default: Date.now
