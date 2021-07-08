@@ -18,6 +18,10 @@ var PostSchema = new Schema({
         type: String,
         default: "" 
     },
+    imagePost: {
+        type: String,
+        default: "" 
+    },
     create_date: {
         type: Date,
         default: Date.now

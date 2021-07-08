@@ -22,6 +22,7 @@ router.get("/tuyendung/getall_post", (req, res, next) => {
       luong: 1,
       userId: 1,
       categoryId: 1,
+      imagePost: 1,
     })
     .exec((err, post) => {
       if (err) {
@@ -82,6 +83,7 @@ router.get("/tuyendung/get_post_with_tieuDe", (req, res, next) => {
       diaChi: 1,
       userId: 1,
       categoryId: 1,
+      imagePost: 1,
     })
     .exec((err, post) => {
       if (err) {
@@ -123,6 +125,7 @@ router.get("/tuyendung/get_post_with_category_id", (req, res, next) => {
       diaChi: 1,
       userId: 1,
       categoryId: 1,
+      imagePost: 1,
     })
     .exec((err, post) => {
       if (err) {
@@ -163,6 +166,7 @@ router.get("/tuyendung/get_post_with_user_id", (req, res, next) => {
       diaChi: 1,
       danhSachUngCuVien: 1,
       userId: 1,
+      imagePost: 1,
       categoryId: 1,
     })
     .exec((err, post) => {
@@ -190,6 +194,7 @@ router.post("/tuyendung/insert_new_post", (req, res, next) => {
     noiDung: req.body.noiDung,
     luong: req.body.luong,
     diaChi: req.body.diaChi,
+    imagePost: req.body.imagePost,
     userId: mongoose.Types.ObjectId(req.body.userId),
     categoryId: mongoose.Types.ObjectId(req.body.categoryId),
   });
@@ -255,6 +260,11 @@ router.put("/tuyendung/update_post", (req, res, next) => {
   if (mongoose.Types.ObjectId.isValid(req.body.post_id) == true) {
     newValues.categoryId = mongoose.Types.ObjectId(req.body.categoryId);
   }
+ 
+
+  if (req.body.imagePost && req.body.imagePost.length > 2) {
+    newValues.imagePost = req.body.imagePost;
+  }
 
   const options = {
     new: true,
@@ -265,7 +275,6 @@ router.put("/tuyendung/update_post", (req, res, next) => {
     condition,
     {
       $set: newValues,
-      $addToSet: { kinhNghiemLamViec: req.body.kinhNghiemLamViec },
     },
     options,
     (err, updatePost) => {
