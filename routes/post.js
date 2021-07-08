@@ -12,7 +12,7 @@ let Post = require("../models/PostModel");
 router.get("/tuyendung/getall_post", (req, res, next) => {
   Post.find({})
     .limit(100)
-    .sort({ create_date: 1 })
+    .sort({ create_date: -1 })
     .select({
       tieuDe: 1,
       noiDung: 1,
