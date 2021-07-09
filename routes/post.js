@@ -157,7 +157,7 @@ router.get("/tuyendung/get_post_with_user_id", (req, res, next) => {
 
   Post.find(condition)
     .limit(limit)
-    .sort({ tenSanPham: 1 })
+    .sort({ create_date: -1 })
     .select({
       tieuDe: 1,
       noiDung: 1,
