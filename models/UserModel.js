@@ -72,6 +72,10 @@ var UserSchema = new Schema({
         type: String,
         default: "1"
     },
+    viTriUngTuyen: {
+        type: String,
+        default: "1"
+    },
     imageUrlCover:[],
     categoryId: Schema.ObjectId,
 })

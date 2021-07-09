@@ -13,6 +13,7 @@ router.get("/tuyendung/getall_user", function (req, res, next) {
     .sort({ tenUser: 1 })
     .select({
       tenUser: 1,
+      viTriUngTuyen: 1,
       hoVaTen: 1,
       moTa: 1,
       loaiUser: 1,
@@ -86,6 +87,7 @@ router.get("/tuyendung/get_user_with_tenUser", function (req, res, next) {
     .limit(limit)
     .sort({ tenUser: 1 })
     .select({
+      viTriUngTuyen: 1,
       mauCvChinh:1,
       tenUser: 1,
       hoVaTen: 1,
@@ -285,6 +287,10 @@ router.put("/tuyendung/update_user", function (req, res, next) {
   // ten dai hon 2 ky tu moi cap nhat
   if (req.body.tenUser && req.body.tenUser.length > 2) {
     newValues.tenUser = req.body.tenUser;
+  }
+
+  if (req.body.viTriUngTuyen && req.body.viTriUngTuyen.length > 2) {
+    newValues.viTriUngTuyen = req.body.viTriUngTuyen;
   }
 
   if (req.body.cacKiNang && req.body.cacKiNang.length > 2) {
