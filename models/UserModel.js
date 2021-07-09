@@ -68,6 +68,10 @@ var UserSchema = new Schema({
         type: String,
         default: ""
     },
+    mauCvChinh: {
+        type: String,
+        default: "1"
+    },
     imageUrlCover:[],
     categoryId: Schema.ObjectId,
 })
