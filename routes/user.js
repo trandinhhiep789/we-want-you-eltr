@@ -76,11 +76,66 @@ router.get("/tuyendung/get_user_by_id", function (req, res, next) {
   });
 });
 
-// get user by tenUser /tuyendung
+// get user by tenUser 
 router.get("/tuyendung/get_user_with_tenUser", function (req, res, next) {
   // criteria tiêu chuẩn
   let criteria = {
     tenUser: new RegExp(req.query.tenUser, "i"), // <=> giống %abc% trong sql
+  };
+  const limit = parseInt(req.query.limit) > 0 ? parseInt(req.query.limit) : 100;
+
+  User.find(criteria)
+    .limit(limit)
+    .sort({ tenUser: 1 })
+    .select({
+      viTriUngTuyen: 1,
+      mauCvChinh:1,
+      colorCV: 1,
+      tenUser: 1,
+      hoVaTen: 1,
+      moTa: 1,
+      loaiUser: 1,
+      email: 1,
+      passWord: 1,
+      create_date: 1,
+      diaChi: 1,
+      diaChi: 1,
+      mucTieuNgheNghiep: 1,
+      soNamKinhNghiem: 1,
+      tenTruong: 1,
+      tinhTrang: 1,
+      imageUrl: 1,
+      imageUrlCover: 1,
+      soDienThoai: 1,
+      kinhNghiemLamViec: 1,
+      cacKiNang: 1,
+      soThich: 1,
+      hoatDong: 1,
+      nguoiThamChieu: 1,
+    })
+    .exec((err, user) => {
+      if (err) {
+        res.json({
+          result: "failed",
+          data: [],
+          message: `Error is: ${err}`,
+        });
+      } else {
+        res.json({
+          result: "ok",
+          data: user,
+          count: user.length,
+          message: `Successfully`,
+        });
+      }
+    });
+});
+
+// get user by loaiUser 
+router.get("/tuyendung/loaiUser", function (req, res, next) {
+  // criteria tiêu chuẩn
+  let criteria = {
+    loaiUser: new RegExp(req.query.loaiUser, "i"), // <=> giống %abc% trong sql
   };
   const limit = parseInt(req.query.limit) > 0 ? parseInt(req.query.limit) : 100;
 
