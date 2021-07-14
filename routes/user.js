@@ -1,6 +1,7 @@
 var router = global.router;
 
 let User = require("../models/UserModel");
+let Post = require("../models/PostModel");
 const mongoose = require("mongoose");
 
 // password handle
@@ -462,14 +463,42 @@ router.put("/tuyendung/update_user", function (req, res, next) {
 });
 
 // xoa user
-router.delete("/tuyendung/delete_user/:id", async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.id);
-    await user.remove();
-    res.send({ data: "Xóa thành công" });
-  } catch {
-    res.status(404).send({ error: "User not found!" });
-  }
+// router.delete("/tuyendung/delete_user/:id", async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.params.id);
+//     await user.remove();
+//     res.send({ data: "Xóa thành công" });
+//   } catch {
+//     res.status(404).send({ error: "User not found!" });
+//   }
+// });
+
+router.delete("/tuyendung/delete_user", async (req, res, next) => {
+  User.findOneAndRemove({_id: mongoose.Types.ObjectId(req.body.user_id)}, (err) => {
+    if(err){
+      res.json({
+        result: "failed",
+        message: `ko the xoa user ${err}`
+      })
+      return
+    }
+
+    Post.findOneAndRemove({userId: mongoose.Types.ObjectId(req.body.user_id)}, (err) => {
+      if(err){
+        res.json({
+          result: "failed",
+          message: `khong the xoa bai dang${err}`
+        })
+        return
+      }
+      res.json({
+        result: "ok",
+        message: "Delete successful"
+      })
+    })
+
+  })
 });
+
 
 module.exports = router;

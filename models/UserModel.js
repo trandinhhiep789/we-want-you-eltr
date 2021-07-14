@@ -74,7 +74,7 @@ var UserSchema = new Schema({
     },
     colorCV: {
         type: String,
-        default: "#556e8e"
+        default: "xanhduong"
     },
     viTriUngTuyen: {
         type: String,
