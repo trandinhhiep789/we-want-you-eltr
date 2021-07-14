@@ -483,7 +483,7 @@ router.delete("/tuyendung/delete_user", async (req, res, next) => {
       return
     }
 
-    Post.findOneAndRemove({userId: mongoose.Types.ObjectId(req.body.user_id)}, (err) => {
+    Post.deleteMany({userId: mongoose.Types.ObjectId(req.body.user_id)}, (err) => {
       if(err){
         res.json({
           result: "failed",
