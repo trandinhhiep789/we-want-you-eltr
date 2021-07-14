@@ -35,6 +35,7 @@ router.get("/tuyendung/getall_user", function (req, res, next) {
       hoatDong: 1,
       nguoiThamChieu: 1,
       mauCvChinh: 1,
+      colorCV: 1,
     })
     .exec((err, user) => {
       if (err) {
@@ -89,6 +90,7 @@ router.get("/tuyendung/get_user_with_tenUser", function (req, res, next) {
     .select({
       viTriUngTuyen: 1,
       mauCvChinh:1,
+      colorCV: 1,
       tenUser: 1,
       hoVaTen: 1,
       moTa: 1,
@@ -361,6 +363,10 @@ router.put("/tuyendung/update_user", function (req, res, next) {
 
   if (req.body.mauCvChinh) {
     newValues.mauCvChinh = req.body.mauCvChinh;
+  }
+
+  if (req.body.colorCV) {
+    newValues.colorCV = req.body.colorCV;
   }
 
   if (req.body.soNamKinhNghiem) {
