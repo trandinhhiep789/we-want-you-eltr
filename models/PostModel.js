@@ -22,6 +22,10 @@ var PostSchema = new Schema({
         type: String,
         default: "" 
     },
+    tenGoiYTimKiem: {
+        type: String,
+        default: "" 
+    },
     create_date: {
         type: Date,
         default: Date.now

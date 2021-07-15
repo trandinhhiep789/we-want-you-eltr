@@ -23,6 +23,7 @@ router.get("/tuyendung/getall_post", (req, res, next) => {
       userId: 1,
       categoryId: 1,
       imagePost: 1,
+      tenGoiYTimKiem: 1,
     })
     .exec((err, post) => {
       if (err) {
@@ -84,6 +85,7 @@ router.get("/tuyendung/get_post_with_tieuDe", (req, res, next) => {
       userId: 1,
       categoryId: 1,
       imagePost: 1,
+      tenGoiYTimKiem: 1,
     })
     .exec((err, post) => {
       if (err) {
@@ -253,6 +255,10 @@ router.put("/tuyendung/update_post", (req, res, next) => {
 
   if (req.body.diaChi && req.body.diaChi.length > 2) {
     newValues.diaChi = req.body.diaChi;
+  }
+
+  if (req.body.tenGoiYTimKiem && req.body.tenGoiYTimKiem.length > 2) {
+    newValues.tenGoiYTimKiem = req.body.tenGoiYTimKiem;
   }
 
   // userId không có chức năng sửa
