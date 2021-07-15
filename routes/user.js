@@ -142,7 +142,7 @@ router.get("/tuyendung/get_user_with_viTriUngTuyen", function (req, res, next) {
 
   User.find(criteria)
     .limit(limit)
-    .sort({ soNamKinhNghiem: 1 })
+    .sort({ soNamKinhNghiem: -1 })
     .select({
       viTriUngTuyen: 1,
       mauCvChinh:1,
