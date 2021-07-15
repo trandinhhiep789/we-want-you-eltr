@@ -38,7 +38,8 @@ var UserSchema = new Schema({
         default: ""
     },
     soNamKinhNghiem:{
-        Number
+        type: String,
+        default: ""
     },
     hoVaTen:{
         type: String,
