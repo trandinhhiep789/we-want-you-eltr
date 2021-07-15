@@ -25,6 +25,7 @@ router.get("/tuyendung/getall_user", function (req, res, next) {
       diaChi: 1,
       mucTieuNgheNghiep: 1,
       soNamKinhNghiem: 1,
+      tenGoiYTimKiem: 1,
       tenTruong: 1,
       tinhTrang: 1,
       imageUrl: 1,
@@ -94,6 +95,7 @@ router.get("/tuyendung/get_user_with_tenUser", function (req, res, next) {
       colorCV: 1,
       tenUser: 1,
       hoVaTen: 1,
+      tenGoiYTimKiem: 1,
       moTa: 1,
       loaiUser: 1,
       email: 1,
@@ -150,6 +152,7 @@ router.get("/tuyendung/get_user_with_viTriUngTuyen", function (req, res, next) {
       tenUser: 1,
       hoVaTen: 1,
       moTa: 1,
+      tenGoiYTimKiem: 1,
       loaiUser: 1,
       email: 1,
       passWord: 1,
@@ -203,6 +206,7 @@ router.get("/tuyendung/loaiUser", function (req, res, next) {
       mauCvChinh:1,
       colorCV: 1,
       tenUser: 1,
+      tenGoiYTimKiem: 1,
       hoVaTen: 1,
       moTa: 1,
       loaiUser: 1,
@@ -482,6 +486,10 @@ router.put("/tuyendung/update_user", function (req, res, next) {
 
   if (req.body.soNamKinhNghiem) {
     newValues.soNamKinhNghiem = req.body.soNamKinhNghiem;
+  }
+
+  if (req.body.tenGoiYTimKiem && req.body.tenGoiYTimKiem.length > 0) {
+    newValues.tenGoiYTimKiem = req.body.tenGoiYTimKiem;
   }
 
   if (mongoose.Types.ObjectId.isValid(req.body.user_id) == true) {

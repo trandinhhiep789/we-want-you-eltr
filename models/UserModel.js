@@ -41,6 +41,10 @@ var UserSchema = new Schema({
         type: String,
         default: ""
     },
+    tenGoiYTimKiem: {
+        type: String,
+        default: "" 
+    },
     hoVaTen:{
         type: String,
         default: ""
